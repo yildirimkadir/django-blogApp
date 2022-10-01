@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for object in queryset %}
+{{object.title}}
+{{object.content}}
+<img src="{{ object.image.url }}" alt="">
+{% comment %} {{object.category}} {% endcomment %}
+{% comment %} {{object.status}} {% endcomment %}
+    
+{% endfor %}
+    
+    
+{% endblock content %}
+    
