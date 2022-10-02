@@ -4,8 +4,8 @@
 
 {% for object in queryset %}
 {{object.title}}
-{{object.content}}
-<img src="{{ object.image.url }}" alt="">
+{{object.content | truncatechars:20}}
+<img src="{{ object.image.url }}" alt="" style="width:15rem; height: 11rem; align-self:center;">
 {% comment %} {{object.category}} {% endcomment %}
 {% comment %} {{object.status}} {% endcomment %}
     
