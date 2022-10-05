@@ -3,12 +3,12 @@
 {% block content %}
 
 {% for object in queryset %}
-{{object.title}}
-{{object.content | truncatechars:20}}
+<a href="{% url 'blog:detail' object.slug %}">
+<h1>{{object.title}}</h1></a>
 <img src="{{ object.image.url }}" alt="" style="width:15rem; height: 11rem; align-self:center;">
 {% comment %} {{object.category}} {% endcomment %}
 {% comment %} {{object.status}} {% endcomment %}
-    
+<p>{{object.content|truncatechars:20}}</p>
 {% endfor %}
     
     

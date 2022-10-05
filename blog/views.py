@@ -1,10 +1,10 @@
 from multiprocessing import context
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Post
 from .forms import PostForm
 # Create your views here.
 def post_list(request):
-    queryset = Post.objects.all()
+    queryset = Post.objects.filter(status="p")
     context = {
         "queryset": queryset
     }
@@ -23,3 +23,10 @@ def post_create(request):
         "form": form
     }
     return render(request, "blog/post_create.html", context)
+
+def post_detail(request, slug):
+    obj = get_object_or_404(Post, slug=slug)
+    context = {
+        "object": obj
+    }
+    return render(request, "blog/post_detail.html", context)
