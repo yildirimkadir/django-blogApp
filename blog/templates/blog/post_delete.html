@@ -6,6 +6,7 @@
     {% csrf_token %}
     <button>Delete</button>
 </form>
-<a href="{% url 'blog:detail' object.slug %}"><button>Cancel</button></a>
+<a href="{% url 'blog:detail' object.slug %}"><button>Cancel</button></a> 
+{% comment %} ben bunu yukarida formun icinde yazinca post_delete calisiyor sanirim buton kullandigim icin  {% endcomment %}
 {% endblock content %}
     
