@@ -6,6 +6,8 @@
 <h1>{{object.title}}</h1>
 <img src="{{ object.image.url }}" alt="" style="width:15rem; height: 11rem; align-self:center;">
 <p>{{object.content}}</p>
+<a href="{% url 'blog:update' object.slug %}"><button>Edit</button></a>
+<a href="{% url 'blog:delete' object.slug %}"><button>Delete</button></a>
 
 {% endblock content %}
     
