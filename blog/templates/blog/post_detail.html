@@ -6,8 +6,34 @@
 <h1>{{object.title}}</h1>
 <img src="{{ object.image.url }}" alt="" style="width:15rem; height: 11rem; align-self:center;">
 <p>{{object.content}}</p>
+<form action="" method="Post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Submit</button>
+</form>
+<p><span><i class="far fa-heart ml-2"></i>{{ object.like_count }}</span></p>
+{% for comment in object.comments %} 
+{% comment %} object dedigimiz, user in yorum yazmak icin tikladigi Post ve o post un icinde yapilan yoruma (Post modelde yazdigmiz def comments yardimiyla Comment modeline ulastigim icin) object.comments diyerek ulasiyorum.Birden fazla yorum yapilacagi icin for kullandim ve yapilan yorum o Comment modeli icindeki content oldugu icin comment.content dedim.  {% endcomment %}
+<h5>comment by {{user}}</h5>
+<p>{{comment.content}}</p>
+    
+{% endfor %}
+<form action="{% url 'blog:like' object.slug %}">
+    {% csrf_token %}
+    <input type="hidden" name="post">
+    <input type="hidden" name="user">
+
+
+    <button type="submit"><i class="far fa-heart fa-lg"></i></button>
+    {{object.like_count }}
+</form>
+<hr>
+
+
+    
 <a href="{% url 'blog:update' object.slug %}"><button>Edit</button></a>
 <a href="{% url 'blog:delete' object.slug %}"><button>Delete</button></a>
+
 
 {% endblock content %}
     
