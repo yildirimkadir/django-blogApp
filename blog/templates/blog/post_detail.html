@@ -30,9 +30,14 @@
 <hr>
 
 
-    
+{% if user == object.author %}
 <a href="{% url 'blog:update' object.slug %}"><button>Edit</button></a>
 <a href="{% url 'blog:delete' object.slug %}"><button>Delete</button></a>
+    
+{% endif %}
+    
+
+
 
 
 {% endblock content %}

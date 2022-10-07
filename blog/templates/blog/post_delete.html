@@ -1,12 +1,19 @@
-{% extends 'base.html' %}
-
+{% extends 'base.html' %} 
+{% load static %}
 {% block content %}
-<h2>Are you sure to delete "{{object.title}}" ? </h2>
-<form action="" method="Post">
-    {% csrf_token %}
-    <button>Delete</button>
-</form>
-<a href="{% url 'blog:detail' object.slug %}"><button>Cancel</button></a> 
-{% comment %} ben bunu yukarida formun icinde yazinca post_delete calisiyor sanirim buton kullandigim icin  {% endcomment %}
-{% endblock content %}
-    
+<div class="row mt-5">
+  <div class="col-md-6">
+    <div class="card card-body">
+      <p>Are you sure you want to delete "{{object}}"?</p>
+      <form action=" " method="POST">
+        {% csrf_token %}
+        <a class="btn btn-warning" href="{% url 'blog:list' %}">Cancel</a>
+        {% comment %} <input class="btn btn-danger" type="submit" name="Confirm" /> {% endcomment %}
+           <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+        
