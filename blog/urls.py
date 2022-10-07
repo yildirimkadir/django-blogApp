@@ -8,5 +8,5 @@ urlpatterns = [
     path("<str:slug>/", post_detail, name='detail'),
     path("update/<str:slug>/", post_update, name='update'),
     path("delete/<str:slug>/", post_delete, name='delete'),
-    path("like/<str:slug>/", like, name='like'),
+    path("<str:slug>/like/", like, name='like'),
 ]
