@@ -15,14 +15,14 @@
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
                     {% comment %} {% url 'logout' %} {% endcomment %}
-                    <a class="nav-item nav-link" href="#">Logout</a>
+                    <a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
                     {% comment %} {% url 'profile' %} {% endcomment %}
                     <a class="nav-item nav-link" href="#">Profile</a>
                     {% comment %} {% url 'blog:create' %} {% endcomment %}
                     <a class="nav-item nav-link" href="{% url 'blog:create' %}">New Post</a>
                     {% else %}
                     {% comment %} {% url 'login' %} {% endcomment %}
-                    <a class="nav-item nav-link" href="#">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
                     {% comment %} {% url 'register' %} {% endcomment %}
                     <a class="nav-item nav-link" href="#">Register</a>
                     {% endif %}
