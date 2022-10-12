@@ -131,4 +131,6 @@ MEDIA_ROOT = BASE_DIR / "media_root"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# LOGIN_REDIRECT_URL = "blog:list"
+LOGIN_REDIRECT_URL = "blog:list"
+
+LOGIN_URL = "login" # bunu url e create yazdigimda login e yönlendirmesi icin yazdim 

@@ -1,8 +1,10 @@
-from multiprocessing import context
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Post, Like
 from .forms import CommentForm, PostForm
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def post_list(request):
     queryset = Post.objects.filter(status="p")
@@ -11,6 +13,7 @@ def post_list(request):
     }
     return render(request, "blog/post_list.html", context)
 
+@login_required() #--> bunu url e create yazdigimda login e yönlendirmesi icin yazdim
 def post_create(request):
     form = PostForm()
     if request.method == "POST":
