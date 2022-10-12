@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 (
                     "image",
                     models.ImageField(
-                        default="avatar.png", upload_to=users.models.user_directory_path
+                        default="avatar.png", upload_to=users.models.user_profile_path
                     ),
                 ),
                 ("bio", models.TextField(blank=True)),
