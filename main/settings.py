@@ -142,3 +142,4 @@ LOGIN_URL = "login" # bunu url e create yazdigimda login e yönlendirmesi icin y
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = config("EMAIL_USER")
 # EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD")
+# .env dosyasina da bir bak !!!
