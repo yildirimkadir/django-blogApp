@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib import messages
 
 def register(request):
     form = RegistrationForm(request.POST or None)
-    
+    if request.user.is_authenticated:
+        messages.warning(request, "You're already authorized!!")
+        return redirect("blog:list")
     if form.is_valid():
         form.save()
+        name = form.cleaned_data["username"]
+        messages.success(request, f"Account created for {name}")
         return redirect("login")
         
     context = {
@@ -20,6 +25,7 @@ def profile(request):
     if user_form.is_valid() and profile_form.is_valid():
         user_form.save()
         profile_form.save()
+        messages.success(request, "Your profile updated succesfully")
         return redirect(request.path)
     
     context = {
