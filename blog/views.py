@@ -1,7 +1,7 @@
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Post, Like
+from .models import Post, Like, PostView
 from .forms import CommentForm, PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -33,15 +33,20 @@ def post_create(request):
 def post_detail(request, slug):
     form = CommentForm()
     obj = get_object_or_404(Post, slug=slug)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.post = obj
-            comment.save()
-            return redirect("blog:detail", slug=slug)
-            # return redirect(request.path) -- > second way   
+    if request.user.is_authenticated:
+        PostView.objects.get_or_create(user=request.user, post=obj)
+        if request.method == "POST":
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.user = request.user
+                comment.post = obj
+                comment.save()
+                return redirect("blog:detail", slug=slug)
+                # return redirect(request.path) -- > second way
+    else:
+        if request.method == "POST":
+            messages.warning(request, "You're not authorized!!")   
     context = {
         "object": obj,
         "form": form
